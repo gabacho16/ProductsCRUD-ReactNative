@@ -18,6 +18,25 @@ export function CategoryList({
       contentContainerStyle={styles.list}
       showsHorizontalScrollIndicator={false}
     >
+      <Pressable
+  accessibilityRole="button"
+  accessibilityState={{ selected: selectedCategoryId === null }}
+  style={({ pressed }) => [
+    styles.button,
+    selectedCategoryId === null && styles.selectedButton,
+    pressed && styles.pressedButton,
+  ]}
+  onPress={() => onSelectCategory(null)}
+>
+  <Text
+    style={[
+      styles.buttonText,
+      selectedCategoryId === null && styles.selectedButtonText,
+    ]}
+  >
+    Todos
+  </Text>
+</Pressable>
       {categories.map((category) => {
         const isSelected = selectedCategoryId === category.id;
         return (

@@ -1,13 +1,24 @@
+import { useRouter } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Product } from "../interfaces/product";
+
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  return (
+  
+const router = useRouter();
+
+return (
     <Pressable
+      onPress={() =>
+        router.push({
+          pathname: "/products/[id]",
+          params: { id: product.id.toString() },
+        })
+      }
       style={({ pressed }) => [styles.card, pressed && styles.pressedCard]}
     >
       <Image source={{ uri: product.image }} style={styles.image} />
